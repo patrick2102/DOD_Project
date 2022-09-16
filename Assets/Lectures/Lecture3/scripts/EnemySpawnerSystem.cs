@@ -10,7 +10,7 @@ public partial class EnemySpawnerSystem : SystemBase
     public GameObject enemyPrefab;
     public Entity enemyEntity;
 
-    public void override OnCreat
+    //public void override OnCreat
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
