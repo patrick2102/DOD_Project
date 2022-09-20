@@ -8,7 +8,7 @@ using UnityEngine;
 public struct FollowerData : IComponentData
 {
     public Translation target;
-    public float speed;
+    public float acceleration;
     public float maxSpeed;
     public float slowDownRadius;
     public float stopRadius;

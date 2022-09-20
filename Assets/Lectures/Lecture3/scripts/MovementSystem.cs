@@ -13,7 +13,7 @@ public partial class MovementSystem : SystemBase
         {
             if (Input.GetKey("w"))
             {
-                translation.Value.y += movementData.speed;
+                translation.Value.z += movementData.speed;
             }
             if (Input.GetKey("a"))
             {
@@ -22,7 +22,7 @@ public partial class MovementSystem : SystemBase
             }
             if (Input.GetKey("s"))
             {
-                translation.Value.y -= movementData.speed;
+                translation.Value.z -= movementData.speed;
 
             }
             if (Input.GetKey("d"))

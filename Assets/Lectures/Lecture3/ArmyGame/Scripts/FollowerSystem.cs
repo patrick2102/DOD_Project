@@ -5,9 +5,37 @@ using Unity.Transforms;
 using Unity.Physics;
 using Unity.Mathematics;
 using UnityEngine;
+using Unity.Jobs;
+using System;
 
 public partial class FollowerSystem : SystemBase
 {
+    EntityQuery queryFollow;
+
+    protected override void OnCreate()
+    {
+        queryFollow = GetEntityQuery(ComponentType.ReadWrite<Translation>(), ComponentType.ReadOnly<FollowerData>());
+    }
+
+    protected override void OnUpdate()
+    {
+        float3 playerPos = new float3();
+
+        Entities.WithAny<MovementData>().ForEach((ref Translation translation) =>
+        {
+            playerPos = translation.Value;
+        }
+        ).Run();
+
+        var followerJob = new FollowerJob { dt = Time.DeltaTime, target=playerPos };
+
+        JobHandle jbh = followerJob.Schedule();
+        jbh.Complete();
+
+        //Debug.Log("Player pos: " + playerPos);
+    }
+
+    /*
     protected override void OnUpdate()
     {
         float deltaTime = Time.DeltaTime;
@@ -16,7 +44,7 @@ public partial class FollowerSystem : SystemBase
             {
                 float3 dir = t.Value - fd.target.Value;
                 float dir_len = math.length(dir);
-
+    */
                 /*
                 if (dir_len < fd.stopRadius)
                 {
@@ -36,7 +64,7 @@ public partial class FollowerSystem : SystemBase
                 }
                 */
 
-
+    /*
                 dir /= math.length(dir);
                 pv.Linear += fd.speed * deltaTime;
                 if (math.length(pv.Linear) > fd.maxSpeed)
@@ -47,4 +75,5 @@ public partial class FollowerSystem : SystemBase
             }
         ).Run();
     }
+*/
 }
