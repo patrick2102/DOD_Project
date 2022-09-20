@@ -7,4 +7,5 @@ using Unity.Entities;
 public struct MovementData : IComponentData
 {
     public float speed;
+    public float maxSpeed;
 }

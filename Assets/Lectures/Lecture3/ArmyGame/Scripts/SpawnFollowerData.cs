@@ -13,5 +13,7 @@ public struct SpawnFollowerData : IComponentData
     public Translation spawnPoint;
     public float spawnRadius;
 
+    public GameObject followerPrefab;
+
     //public List<Translation> followerPositions;
 }
